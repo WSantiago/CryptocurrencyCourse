@@ -45,7 +45,9 @@ public class TxHandler {
             //(3) no UTXO is claimed multiple times by {@code tx},
             for(int i = inputs.indexOf(input) + 1; i < inputs.size(); i++)
             {
-                if(input.equals(inputs.get(i)))
+                Transaction.Input otherInput = inputs.get(i);
+                UTXO otherInputUtxo = new UTXO(otherInput.prevTxHash, otherInput.outputIndex);
+                if(inputUtxo.equals(otherInputUtxo))
                 {
                     return false;
                 }
